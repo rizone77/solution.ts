@@ -25,6 +25,9 @@ const formatValue = (input: string | number | boolean) => {
 
 
 
+
+
+
 const getLength  = (input: string | any[]) => {
    if(typeof input === 'string'){
     return input.length
@@ -33,6 +36,7 @@ const getLength  = (input: string | any[]) => {
        return input.length
    }
 }
+
 
 
 
@@ -63,7 +67,6 @@ const filterByRating = (books: {title: string, rating: number}[]) => {
 
 
 
-
 type activeUsers = {
   id: number;
   name: string;
@@ -88,6 +91,9 @@ const printBookDetails = (books: Book) => {
   const availabile = books.isAvailable ? 'Yes' : 'No'
   return console.log(`Title: ${books.title}, Author: ${books.author}, Published: ${books.publishedYear}, Available: ${availabile}`)
 };
+
+
+
 
 
 
@@ -127,6 +133,9 @@ const printBookDetails = (books: Book) => {
 
 
 
+
+
+
 type Product = {
   name: string;
   price: number;
@@ -137,18 +146,16 @@ type Product = {
   
   const calculateTotalPrice = (products: Product[]) => {
     return products.reduce((total, product) => {
-      const hasTotal =   product.price * product.quantity;
-      let fullPrice : number
+      let hasTotal =   product.price * product.quantity;
+   
          if(product.discount != undefined){
-          fullPrice = hasTotal * (1- product.discount / 100)
-         }else{
-          fullPrice = hasTotal
+          const discountAmount =( hasTotal *  product.discount) / 100;
+          hasTotal = hasTotal - discountAmount
          }
-         return total +  fullPrice
+         return total +  hasTotal
     }, 0)
   }
 
   
-
 
 
